@@ -9,63 +9,25 @@
       </el-col>
       <el-col :span="15" class="center">
         <div class="wrapper">
-          <el-input placeholder="搜索商家或地点"></el-input>
+          <el-input 
+          v-model='search'
+          placeholder="搜索商家或地点"
+          @focus='handleFocus'
+          @blur ='handleBlur'
+          @input='handleInput'
+          ></el-input>
           <button class="el-button el-button-primary">
             <i class="el-icon-search"></i>
           </button>
-          <dl class="hot-search" v-if="!isHotSearch">
+          <dl class="hot-search" v-if="isHotSearch">
             <dt>热门搜索</dt>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
+            <dd v-for='(item, index) in hotSearch' :key='index'>
+              {{item}}
             </dd>
           </dl>
-          <dl class="search-list" v-if="!isHotSearch">
-            <dd>
-              <a href="#">
-                222
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                1111
-              </a>
+          <dl class="search-list" v-if="isSearchList">
+            <dd v-for='(item,idx) in searchList' :key='idx'>
+              {{item}}
             </dd>
           </dl>
         </div>
@@ -108,8 +70,33 @@
 export default {
     data(){
         return {
-            isHotSearch: true
+            isFocus: false,
+            search: '',
+            hotSearch:['欢乐谷','欢乐谷','欢乐谷','欢乐谷'],
+            searchList:['颐和园','颐和园','颐和园','颐和园','颐和园']
         }
+    },
+    methods:{
+      handleFocus(){
+        this.isFocus=true
+      },
+     handleBlur: function() {
+			let _self = this;
+			setTimeout(function() {
+				_self.isFocus = false;
+			}, 200)
+    },
+    handleInput(){
+      console.log('inpit')
+    }
+    },
+    computed:{
+      isHotSearch(){
+        return this.isFocus && !this.search
+      },
+      isSearchList: function() {
+        return this.isFocus && this.search
+      }
     }
 }
 </script>
