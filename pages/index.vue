@@ -4,18 +4,26 @@
       <el-col :span='5'>
         <side-menu/>
       </el-col>
-      <el-col :span='19'>222</el-col>
+      <el-col :span='19'>
+        <life />
+      </el-col>
     </el-row>
     <el-row>
-      <el-col :span='24'>333</el-col>
+      <el-col :span='24'>
+        <has-style/>
+      </el-col>
     </el-row>
   </div>
 </template>
 <script>
-import sideMenu from '@/components/index/menu.vue'
+import sideMenu from '@/components/index/menu.vue';
+import life from '@/components/index/life.vue';
+import hasStyle from '@/components/index/hasStyle.vue'
 export default {
   components:{
-    sideMenu
+    sideMenu,
+    life,
+    hasStyle
   }
 }
 </script>

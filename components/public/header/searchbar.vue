@@ -16,7 +16,7 @@
           @blur ='handleBlur'
           @input='handleInput'
           ></el-input>
-          <button class="el-button el-button-primary">
+          <button class="el-button el-button--primary">
             <i class="el-icon-search"></i>
           </button>
           <dl class="hot-search" v-if="isHotSearch">
